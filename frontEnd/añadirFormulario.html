@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="idle-design.css">
+    <title>Idle Design!</title>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <div class="sidebarHeader">
+            <img src="img/LogoIdleDesign.png" alt="Logo Idle Design">
+            <h1>INDICE</h1>
+            <ul>
+                <li>
+                    <a href="index.html">Inicio</a>
+                </li>
+                <li>
+                    <a href="pag2-idle-design.html">Encuesta</a>
+                </li>
+                <li>
+                    <a href="pag3-idle-design.html">Explora</a>
+                </li>
+                <li>
+                    <a href="pag4-idle-design.html">Banco de imagenes</a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebarFooter">
+            <p>Autor: Daniel Lopez</p>
+        </div>
+    </div>
+    <div class="bigContainer">
+        <div class="banner">
+            <button>Log in</button>
+            <button>Sing in</button>
+        </div>
+        <div class="mediumContainer">
+            <div class="main">
+                <h1>CRUD APPLICATION</h1>
+
+                <div class="tabla-container">
+                    <h2>Añadir una pregunta</h2>
+
+                    <form id="formularioNuevaPregunta">
+                        <label for="categoria">Categoría:</label>
+                        <input type="text" id="categoria" name="categoria"><br>
+
+                        <label for="pregunta">Pregunta:</label>
+                        <input type="text" id="pregunta" name="pregunta"><br>
+
+                        <label for="respuesta">Respuesta:</label>
+                        <input type="text" id="respuesta" name="respuesta"><br>
+
+                        <label for="incorrecta1">Incorrecta 1:</label>
+                        <input type="text" id="incorrecta1" name="incorrecta1"><br>
+
+                        <label for="incorrecta2">Incorrecta 2:</label>
+                        <input type="text" id="incorrecta2" name="incorrecta2"><br>
+
+                        <label for="incorrecta3">Incorrecta 3:</label>
+                        <input type="text" id="incorrecta3" name="incorrecta3"><br>
+
+                        <input type="submit" value="Añadir" onclick="window.location.href = 'pag3-idle-design.html'">
+                    </form>
+                </div>
+
+                <script src="crudJson.js"></script>
+
+            </div>
+            <div class="extraInfo">
+                <img src="img/moreInfo.png" alt="moreInfo">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
