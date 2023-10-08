@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="idle-design.css">
+    <title>Idle Design!</title>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <div class="sidebarHeader">
+            <img src="img/LogoIdleDesign.png" alt="Logo Idle Design">
+            <h1>INDICE</h1>
+            <ul>
+                <li>
+                    <a href="index.html">Inicio</a>
+                </li>
+                <li>
+                    <a href="pag2-idle-design.html">Encuesta</a>
+                </li>
+                <li>
+                    <a href="pag3-idle-design.html">Explora</a>
+                </li>
+                <li>
+                    <a href="pag4-idle-design.html">Banco de imagenes</a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebarFooter">
+            <p>Autor: Daniel Lopez</p>
+        </div>
+    </div>
+    <div class="bigContainer">
+        <div class="banner">
+            <button>Log in</button>
+            <button>Sing in</button>
+        </div>
+        <div class="mediumContainer">
+            <div class="main">
+                <h1>CRUD APPLICATION</h1>
+                <h2>Modificar una pregunta</h2>
+
+                <input type="hidden" id="id" name="id" value="">
+                <form id="editForm">
+                    <label for="categoria"><input type="text" id="categoria" name="categoria" placeholder="Categoría"></label>
+                    <label for="pregunta"><input type="text" id="pregunta" name="pregunta" placeholder="Pregunta"></label>
+                    <label for="respuesta"><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta"></label>
+                    <label for="incorrecta1"><input type="text" id="incorrecta1" name="incorrecta1" placeholder="Incorrecta"></label>
+                    <label for="incorrecta2"><input type="text" id="incorrecta2" name="incorrecta2" placeholder="Incorrecta"></label>
+                    <label for="incorrecta3"><input type="text" id="incorrecta3" name="incorrecta3" placeholder="Incorrecta"></label>
+
+                    <button type="submit">Guardar Cambios</button>
+                </form>
+
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const id = new URLSearchParams(window.location.search).get("id");
+                        const editForm = document.getElementById("editForm");
+                        const categoriaInput = document.getElementById("categoria");
+                        const preguntaInput = document.getElementById("pregunta");
+                        const respuestaInput = document.getElementById("respuesta");
+                        const incorrecta1Input = document.getElementById("incorrecta1");
+                        const incorrecta2Input = document.getElementById("incorrecta2");
+                        const incorrecta3Input = document.getElementById("incorrecta3");
+
+                        // Hacer una solicitud al servidor para obtener la información de la pregunta
+                        fetch(`http://localhost:3000/api/preguntas/${id}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                // Rellena los campos del formulario con los datos obtenidos
+                                categoriaInput.value = data.categoria;
+                                preguntaInput.value = data.pregunta;
+                                respuestaInput.value = data.respuesta;
+                                incorrecta1Input.value = data.incorrecta1;
+                                incorrecta2Input.value = data.incorrecta2;
+                                incorrecta3Input.value = data.incorrecta3;
+                            })
+                            .catch(error => {
+                                console.error("Error al obtener la pregunta:", error);
+                            });
+
+                        // Agrega un evento de envío al formulario
+                        editForm.addEventListener("submit", function (e) {
+                            e.preventDefault();
+                            const formData = new FormData(this);
+
+                            fetch(`http://localhost:3000/api/preguntas/${id}`, {
+                                method: "PATCH",
+                                body: JSON.stringify(Object.fromEntries(formData)), // Convierte FormData a objeto JSON
+                                headers: {
+                                    "Content-Type": "application/json", // Establece el tipo de contenido JSON
+                                },
+                            })
+                                .then(response => {
+                                    // Redirige al usuario de vuelta a "pag3-idle-design.html" después de la actualización
+                                    window.location.href = "pag3-idle-design.html";
+                                })
+                                .catch(error => {
+                                    console.error("Error al actualizar la pregunta:", error);
+                                });
+                        });
+
+                    });
+                </script>
+
+
+            </div>
+            <div class="extraInfo">
+                <img src="img/moreInfo.png" alt="moreInfo">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
